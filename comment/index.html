@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>评论模块</title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <script src="https://cdn.bootcss.com/vue/2.5.13/vue.js"></script>
+    <script src="comment_input.js"></script>
+    <link rel="stylesheet" href="index.css" />
+    <script src="comment_list.js"></script>
+
+	<script type="text/javascript" charset="utf-8">
+  		mui.init();
+	</script>
+</head>
+<body>
+	<div id="root">
+		<cinput @baocun="najiubaocun"></cinput>
+		<clist v-bind:comments="comments" @shanchuzhiwo="shanchuNi"></clist>
+	</div>
+	
+<script>
+	
+	Vue.component('cinput',commentInput);
+	Vue.component('comment',commentItem);
+	Vue.component('clist',commentList);
+	var app = new Vue({
+		el: '#root',
+		data:{
+			comments:[]
+		},
+		methods:{
+			updateLocal(){
+				localStorage.setItem('vvv-comments',JSON.stringify(this.comments));
+			},
+			najiubaocun(res){
+				this.comments.push(res);
+				this.updateLocal();
+			},
+			shanchuNi(id){
+				this.comments = this.comments.filter((c) => c.id !=id);
+				this.updateLocal();
+			}
+		},
+		created(){
+			//const声明一个只读的常量。一旦声明，常量的值就不能改变。
+			const cs = localStorage.getItem('vvv-comments');
+			if(cs){
+				this.comments = JSON.parse(cs);
+			}
+		}
+	});
+</script>
+    
+</body>
+</html>

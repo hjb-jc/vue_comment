@@ -1,0 +1,43 @@
+#root{
+	width: 400px;
+	padding:2em;
+	margin:2em auto;
+	border: 1px solid gold;
+	border-radius: 1em;
+}
+.cinput {
+	margin-bottom: 2em;
+}
+
+label {
+	display: flex;
+	margin: 1em 0;
+}
+label span{
+	flex-basis: 130px;
+}
+textarea {
+	flex: 1;
+	height: 150px;
+}
+input {
+	flex: 1;
+}
+
+#btn{
+	background-color: yellow;
+}
+
+.comment {
+	padding: 1em;
+	border-bottom: 1px solid royalblue;
+	display: fiex;
+}
+
+.comment-author{
+	color: steelblue;
+	flex-basis: 50px;
+}
+.comment-delete{
+	align-self: auto;
+}
